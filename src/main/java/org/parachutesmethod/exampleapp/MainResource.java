@@ -33,4 +33,25 @@ public class MainResource {
         }
         return Response.ok().entity(input.toUpperCase()).build();
     }
+
+    @POST
+    @Path("operations/reverse")
+    @Produces(MediaType.TEXT_PLAIN)
+    @ParachuteMethod(
+            retainParachuteAnnotations = true,
+            overProvisioningFactor = 1.4,
+            rerouteOnDay = "20191224"
+    )
+    public Response reverse(String input) {
+        if (Objects.isNull(input)) {
+            return Response.serverError().entity("input cannot be empty").build();
+        }
+        return Response.ok().entity(UtilClass.reverseString(input)).build();
+    }
+
+    public static class UtilClass {
+        static String reverseString(String s) {
+            return new StringBuilder(s).reverse().toString();
+        }
+    }
 }
