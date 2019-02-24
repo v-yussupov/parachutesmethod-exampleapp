@@ -7,7 +7,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.util.Objects;
 
 @Path("/")
@@ -27,31 +26,57 @@ public class MainResource {
             overProvisioningFactor = 1.4,
             rerouteOnDay = "20191224"
     )
-    public Response capitalize(String input) {
+    public String capitalize(String input) {
         if (Objects.isNull(input)) {
-            return Response.serverError().entity("input cannot be empty").build();
+            return "input cannot be empty";
         }
-        return Response.ok().entity(input.toUpperCase()).build();
+        return input.toUpperCase();
     }
 
     @POST
     @Path("operations/reverse")
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     @ParachuteMethod(
             retainParachuteAnnotations = true,
             overProvisioningFactor = 1.4,
             rerouteOnDay = "20191224"
     )
-    public Response reverse(String input) {
+    public ResponsePOJO reverse(String input) {
         if (Objects.isNull(input)) {
-            return Response.serverError().entity("input cannot be empty").build();
+            return new ResponsePOJO(input, "ERROR");
         }
-        return Response.ok().entity(UtilClass.reverseString(input)).build();
+        return new ResponsePOJO(input, UtilClass.reverseString(input));
     }
 
     public static class UtilClass {
         static String reverseString(String s) {
             return new StringBuilder(s).reverse().toString();
+        }
+    }
+
+    public class ResponsePOJO {
+        String givenInput;
+        String resultingOutput;
+
+        public ResponsePOJO(String givenInput, String resultingOutput) {
+            this.givenInput = givenInput;
+            this.resultingOutput = resultingOutput;
+        }
+
+        public String getGivenInput() {
+            return givenInput;
+        }
+
+        public void setGivenInput(String givenInput) {
+            this.givenInput = givenInput;
+        }
+
+        public String getResultingOutput() {
+            return resultingOutput;
+        }
+
+        public void setResultingOutput(String resultingOutput) {
+            this.resultingOutput = resultingOutput;
         }
     }
 }
