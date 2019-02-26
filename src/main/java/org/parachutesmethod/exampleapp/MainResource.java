@@ -22,7 +22,6 @@ public class MainResource {
     @Path("operations/capitalize")
     @Produces(MediaType.TEXT_PLAIN)
     @ParachuteMethod(
-            retainParachuteAnnotations = true,
             overProvisioningFactor = 1.4,
             rerouteOnDay = "20191224"
     )
@@ -37,7 +36,6 @@ public class MainResource {
     @Path("operations/reverse")
     @Produces(MediaType.APPLICATION_JSON)
     @ParachuteMethod(
-            retainParachuteAnnotations = true,
             overProvisioningFactor = 1.4,
             rerouteOnDay = "20191224"
     )
