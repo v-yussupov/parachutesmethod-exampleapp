@@ -25,9 +25,9 @@ public class MainResource {
     @ParachuteMethod(backupRoute = true)
     public ResponsePOJO capitalize(RequestPOJO input) {
         if (Objects.isNull(input)) {
-            return new ResponsePOJO("input cannot be empty");
+            return new ResponsePOJO("501", "input cannot be empty");
         }
-        return new ResponsePOJO(input.getRequest().toUpperCase());
+        return new ResponsePOJO("200", input.getRequest().toUpperCase());
     }
 
     @POST
@@ -36,9 +36,9 @@ public class MainResource {
     @ParachuteMethod(backupRoute = true)
     public ResponsePOJO reverse(RequestPOJO input) {
         if (Objects.isNull(input)) {
-            return new ResponsePOJO("input cannot be empty");
+            return new ResponsePOJO("501", "input cannot be empty");
         }
-        return new ResponsePOJO(UtilClass.reverseString(input.getRequest()));
+        return new ResponsePOJO("200", UtilClass.reverseString(input.getRequest()));
     }
 
     public static class UtilClass {
@@ -67,21 +67,31 @@ public class MainResource {
     }
 
     public class ResponsePOJO {
-        String response;
+        String status;
+        String body;
 
         public ResponsePOJO() {
         }
 
-        public ResponsePOJO(String response) {
-            this.response = response;
+        public ResponsePOJO(String status, String body) {
+            this.status = status;
+            this.body = body;
         }
 
-        public String getResponse() {
-            return response;
+        public String getStatus() {
+            return status;
         }
 
-        public void setResponse(String response) {
-            this.response = response;
+        public String getBody() {
+            return body;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
+        }
+
+        public void setBody(String body) {
+            this.body = body;
         }
     }
 }
