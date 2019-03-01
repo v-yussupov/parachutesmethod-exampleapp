@@ -1,13 +1,14 @@
 package org.parachutesmethod.exampleapp;
 
-import org.parachutesmethod.annotations.ParachuteMethod;
+import java.util.Objects;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.util.Objects;
+
+import org.parachutesmethod.annotations.ParachuteMethod;
 
 @Path("/")
 public class MainResource {
@@ -22,28 +23,30 @@ public class MainResource {
     @Path("operations/capitalize")
     @Produces(MediaType.TEXT_PLAIN)
     @ParachuteMethod(
+            retainParachuteAnnotations = true,
             overProvisioningFactor = 1.4,
             rerouteOnDay = "20191224"
     )
-    public String capitalize(String input) {
+    public ResponsePOJO capitalize(RequestPOJO input) {
         if (Objects.isNull(input)) {
-            return "input cannot be empty";
+            return new ResponsePOJO("input cannot be empty");
         }
-        return input.toUpperCase();
+        return new ResponsePOJO(input.getRequest().toUpperCase());
     }
 
     @POST
     @Path("operations/reverse")
     @Produces(MediaType.APPLICATION_JSON)
     @ParachuteMethod(
+            retainParachuteAnnotations = true,
             overProvisioningFactor = 1.4,
             rerouteOnDay = "20191224"
     )
-    public ResponsePOJO reverse(String input) {
+    public ResponsePOJO reverse(RequestPOJO input) {
         if (Objects.isNull(input)) {
-            return new ResponsePOJO(input, "ERROR");
+            return new ResponsePOJO("input cannot be empty");
         }
-        return new ResponsePOJO(input, UtilClass.reverseString(input));
+        return new ResponsePOJO(UtilClass.reverseString(input.getRequest()));
     }
 
     public static class UtilClass {
@@ -52,29 +55,27 @@ public class MainResource {
         }
     }
 
+    public class RequestPOJO {
+        String request;
+
+        public RequestPOJO(String request) {
+            this.request = request;
+        }
+
+        public String getRequest() {
+            return request;
+        }
+    }
+
     public class ResponsePOJO {
-        String givenInput;
-        String resultingOutput;
+        String response;
 
-        public ResponsePOJO(String givenInput, String resultingOutput) {
-            this.givenInput = givenInput;
-            this.resultingOutput = resultingOutput;
+        public ResponsePOJO(String response) {
+            this.response = response;
         }
 
-        public String getGivenInput() {
-            return givenInput;
-        }
-
-        public void setGivenInput(String givenInput) {
-            this.givenInput = givenInput;
-        }
-
-        public String getResultingOutput() {
-            return resultingOutput;
-        }
-
-        public void setResultingOutput(String resultingOutput) {
-            this.resultingOutput = resultingOutput;
+        public String getResponse() {
+            return response;
         }
     }
 }
