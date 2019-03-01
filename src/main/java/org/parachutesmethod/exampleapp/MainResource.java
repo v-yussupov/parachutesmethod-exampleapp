@@ -22,11 +22,7 @@ public class MainResource {
     @POST
     @Path("operations/capitalize")
     @Produces(MediaType.TEXT_PLAIN)
-    @ParachuteMethod(
-            retainParachuteAnnotations = true,
-            overProvisioningFactor = 1.4,
-            rerouteOnDay = "20191224"
-    )
+    @ParachuteMethod(backupRoute = true)
     public ResponsePOJO capitalize(RequestPOJO input) {
         if (Objects.isNull(input)) {
             return new ResponsePOJO("input cannot be empty");
@@ -37,11 +33,7 @@ public class MainResource {
     @POST
     @Path("operations/reverse")
     @Produces(MediaType.APPLICATION_JSON)
-    @ParachuteMethod(
-            retainParachuteAnnotations = true,
-            overProvisioningFactor = 1.4,
-            rerouteOnDay = "20191224"
-    )
+    @ParachuteMethod(backupRoute = true)
     public ResponsePOJO reverse(RequestPOJO input) {
         if (Objects.isNull(input)) {
             return new ResponsePOJO("input cannot be empty");
