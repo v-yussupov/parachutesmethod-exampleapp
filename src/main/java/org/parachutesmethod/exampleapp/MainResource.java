@@ -50,6 +50,9 @@ public class MainResource {
     public class RequestPOJO {
         String request;
 
+        public RequestPOJO() {
+        }
+
         public RequestPOJO(String request) {
             this.request = request;
         }
@@ -57,10 +60,17 @@ public class MainResource {
         public String getRequest() {
             return request;
         }
+
+        public void setRequest(String request) {
+            this.request = request;
+        }
     }
 
     public class ResponsePOJO {
         String response;
+
+        public ResponsePOJO() {
+        }
 
         public ResponsePOJO(String response) {
             this.response = response;
@@ -68,6 +78,10 @@ public class MainResource {
 
         public String getResponse() {
             return response;
+        }
+
+        public void setResponse(String response) {
+            this.response = response;
         }
     }
 }
