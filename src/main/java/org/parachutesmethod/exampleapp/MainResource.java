@@ -9,6 +9,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.parachutesmethod.annotations.ParachuteMethod;
+import org.parachutesmethod.models.RequestPOJO;
 
 @Path("/")
 public class MainResource {
@@ -44,25 +45,6 @@ public class MainResource {
     public static class UtilClass {
         static String reverseString(String s) {
             return new StringBuilder(s).reverse().toString();
-        }
-    }
-
-    public class RequestPOJO {
-        String request;
-
-        public RequestPOJO() {
-        }
-
-        public RequestPOJO(String request) {
-            this.request = request;
-        }
-
-        public String getRequest() {
-            return request;
-        }
-
-        public void setRequest(String request) {
-            this.request = request;
         }
     }
 
