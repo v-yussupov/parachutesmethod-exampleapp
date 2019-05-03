@@ -1,15 +1,14 @@
 package org.parachutesmethod.exampleapp;
 
-import java.util.Objects;
+import org.parachutesmethod.annotations.ParachuteMethod;
+import org.parachutesmethod.models.RequestPOJO;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
-import org.parachutesmethod.annotations.ParachuteMethod;
-import org.parachutesmethod.models.RequestPOJO;
+import java.util.Objects;
 
 @Path("/")
 public class MainResource {
@@ -22,7 +21,7 @@ public class MainResource {
 
     @POST
     @Path("operations/capitalize")
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     @ParachuteMethod(backupRoute = true)
     public ResponsePOJO capitalize(RequestPOJO input) {
         if (Objects.isNull(input)) {
