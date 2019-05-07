@@ -8,6 +8,9 @@ public class Customer {
     private String city;
     private String country;
 
+    public Customer() {
+    }
+
     public int getCustomerId() {
         return customerId;
     }

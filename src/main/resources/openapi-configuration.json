@@ -1,0 +1,26 @@
+{
+  "resourcePackages": [
+    "org.parachutesmethod.exampleapp"
+  ],
+  "prettyPrint": true,
+  "openAPI": {
+    "info": {
+      "version": "1.0",
+      "title": "Parachutes Framework example app configuration file",
+      "description": "This is a basic API",
+      "contact": {
+        "name": "Vladimir Yussupov",
+        "email": "vladimir.yussupov@iaas.uni-stuttgart.de"
+      },
+      "license": {
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      }
+    },
+    "servers": [
+      {
+        "url": "/api"
+      }
+    ]
+  }
+}

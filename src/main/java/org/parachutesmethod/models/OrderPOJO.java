@@ -22,6 +22,10 @@ public class OrderPOJO {
         this.customer = customer;
     }
 
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
+
     public List<OrderItem> getOrderItems() {
         return orderItems;
     }

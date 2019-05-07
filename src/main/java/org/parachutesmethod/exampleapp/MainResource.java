@@ -1,17 +1,20 @@
 package org.parachutesmethod.exampleapp;
 
+import io.swagger.annotations.Api;
 import org.parachutesmethod.annotations.ParachuteMethod;
 import org.parachutesmethod.models.RequestPOJO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.Objects;
 
 @Path("/")
+@Api(value = "mainresource", description = "Sample description")
 public class MainResource {
+
+    private static Logger LOGGER = LoggerFactory.getLogger(MainResource.class);
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
@@ -21,6 +24,7 @@ public class MainResource {
 
     @POST
     @Path("operations/capitalize")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @ParachuteMethod(backupRoute = true)
     public ResponsePOJO capitalize(RequestPOJO input) {
@@ -32,6 +36,7 @@ public class MainResource {
 
     @POST
     @Path("operations/reverse")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @ParachuteMethod(backupRoute = true)
     public ResponsePOJO reverse(RequestPOJO input) {

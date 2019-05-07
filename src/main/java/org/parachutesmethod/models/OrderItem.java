@@ -6,6 +6,9 @@ public class OrderItem {
     private int amount;
     private double itemPrice;
 
+    public OrderItem() {
+    }
+
     public int getProductId() {
         return productId;
     }
